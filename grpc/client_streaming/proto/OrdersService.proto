@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package lots;
+option go_package =  "./orderspb";
+
+message OrderRequest {
+    double price = 1;
+    int64 quantity = 2;
+}
+
+message OrdersResponse {
+    int64 executedOrders = 1;
+}
+
+service OrdersService {
+    rpc PostOrder(stream OrderRequest) returns(OrdersResponse) {};
+}

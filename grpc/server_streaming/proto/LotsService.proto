@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package lots;
+option go_package =  "./lotspb";
+
+message LotsRequest {
+    int64 limit = 1;
+}
+
+message Lot {
+    int64 ID = 1;
+    string desc = 2;
+    double price = 3;
+}
+
+message LotsResponse {
+    Lot lot = 1;
+}
+
+service LotsService {
+    rpc ActiveLots(LotsRequest) returns(stream LotsResponse) {};
+}
